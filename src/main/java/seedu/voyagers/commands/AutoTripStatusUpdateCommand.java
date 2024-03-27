@@ -13,9 +13,14 @@ public class AutoTripStatusUpdateCommand {
 
         for (int i = 0; i < trips.size(); i++) {
             Trip trip = trips.get(i);
-            if (trip.getEndDate().before(currentDate) && trip.getStatus() == Status.ONGOING) {
+            if (trip.getEndDate().before(currentDate) && (trip.getStatus() == Status.ONGOING
+                    || trip.getStatus() == Status.UPCOMING)){
                 trip.setStatus(Status.COMPLETED);
                 ui.echo("Trip " + trip.getName() + " has ended. It is now marked as completed.");
+            }
+            else if (trip.getStartDate().after(currentDate) && trip.getStatus() == Status.UPCOMING){
+                trip.setStatus(Status.ONGOING);
+                ui.echo("Trip " + trip.getName() + " has started. It is now marked as ongoing.");
             }
         }
     }

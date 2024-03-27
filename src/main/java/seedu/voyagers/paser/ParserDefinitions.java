@@ -20,4 +20,6 @@ public class ParserDefinitions {
 
     public static final String[] REVIEW = {"/n", "/r"};
 
+    public static final String[] CANCELTRIP = {"/n"};
+
 }

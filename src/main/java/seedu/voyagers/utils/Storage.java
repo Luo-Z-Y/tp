@@ -41,7 +41,7 @@ public class Storage {
                 java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");
                 Date startDate = format.parse(inputs[1]);
                 Date endDate = format.parse(inputs[2]);
-                Trip trip = new Trip(inputs[0], startDate, endDate, inputs[3], inputs[4], inputs[5]);
+                Trip trip = new Trip(inputs[0], startDate, endDate, inputs[3], inputs[4], inputs[5], inputs[6]);
                 trips.add(trip);
             }
             s.close();

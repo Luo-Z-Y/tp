@@ -2,6 +2,7 @@ package seedu.voyagers.commands;
 
 import seedu.voyagers.classes.TripList;
 import seedu.voyagers.utils.FormatDate;
+import seedu.voyagers.utils.Status;
 import seedu.voyagers.utils.Ui;
 import seedu.voyagers.utils.Storage;
 import seedu.voyagers.classes.Trip;
@@ -54,6 +55,9 @@ public class ModifyTripCommand extends Command{
             break;
         case "description":
             trip.setDescription(args[2]);
+            break;
+        case "cancel":
+            trip.setStatus(Status.CANCELLED);
             break;
         default:
             ui.echo("Invalid modification type");

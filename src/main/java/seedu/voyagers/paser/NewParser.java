@@ -1,15 +1,6 @@
 package seedu.voyagers.paser;
 
-import seedu.voyagers.commands.AddSubTripCommand;
-import seedu.voyagers.commands.AddTripCommand;
-import seedu.voyagers.commands.Command;
-import seedu.voyagers.commands.DeleteCommand;
-import seedu.voyagers.commands.ExitCommand;
-import seedu.voyagers.commands.HelpCommand;
-import seedu.voyagers.commands.ListCommand;
-import seedu.voyagers.commands.ModifyTripCommand;
-import seedu.voyagers.commands.ReviewMainTripCommand;
-import seedu.voyagers.commands.AddBillCommand;
+import seedu.voyagers.commands.*;
 
 
 import java.util.Arrays;
@@ -72,7 +63,10 @@ public class NewParser {
         case "reviewmaintrip":
             values = parseArgs(line, ParserDefinitions.REVIEW);
             return new ReviewMainTripCommand(values);
-
+        case "canceltrip":
+            values = concatenate(new String[]{"cancel"},
+                    parseArgs(line, ParserDefinitions.CANCELTRIP, true));
+            return new ModifyTripCommand(values);
         default:
             throw new IllegalArgumentException("Invalid command");
 

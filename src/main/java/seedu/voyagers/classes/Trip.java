@@ -18,7 +18,8 @@ public class Trip {
 
     private ArrayList<Trip> subTrips = new ArrayList<>();
 
-    public Trip(String name, Date startDate, Date endDate, String location, String description, String reviewScore) {
+    public Trip(String name, Date startDate, Date endDate, String location, String description, String reviewScore,
+                String status) {
 
         if (startDate.after(endDate)) {
             throw new IllegalArgumentException("Start date cannot be after end date");
@@ -34,13 +35,7 @@ public class Trip {
         this.reviewScore = Integer.parseInt(reviewScore);
         // if the date is in the future, the trip is ongoing
         // if the date is in the past, the trip is completed
-        if (endDate.before(new Date())) {
-            this.status = Status.COMPLETED;
-        }   else if (startDate.after(new Date())) {
-            this.status = Status.UPCOMING;
-        }   else {
-            this.status = Status.ONGOING;
-        }
+        this.status = Status.valueOf(status);
     }
 
     public Trip(String[] args) throws Exception{
