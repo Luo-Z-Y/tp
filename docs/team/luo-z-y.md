@@ -11,6 +11,8 @@ Given below are my contributions to the project.
 - Added the ability to set status for a trip.
 - Added the ability to store trips and bills data in a file.
 - Added the ability to simplify bills from a trip.
+- Fix bugs and update the parser to implement new features.
+- Fix bugs in displaying messages to the user.
 
 ### Code contributed: [Repo link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=luo-z-y)
 
@@ -25,11 +27,6 @@ Given below are my contributions to the project.
 - **Enhancement 1**: Updated the `README.md` file to include a brief description of the project.
 - **Enhancement 2**: Updated the `UserGuide.md` file to include a detailed user guide for the project.
 - **Enhancement 3**: Updated the `AboutUs.md` file to include a brief introduction of the team members.
-
-### Documentation:
-- **Documentation 1**: [User Guide](
-- **Documentation 2**: [Developer Guide](
-- **Documentation 3**: [About Us](
 
 ### Community:
 - **Community 1**: Reported bugs and suggestions for other teams in the project.

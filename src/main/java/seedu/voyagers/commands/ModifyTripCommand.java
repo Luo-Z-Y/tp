@@ -60,6 +60,7 @@ public class ModifyTripCommand extends Command {
                 Date newStartDate = FormatDate.dateFormat.parse(args[2]);
                 Date newEndDate = FormatDate.dateFormat.parse(args[3]);
                 trip.setDates(newStartDate, newEndDate);
+                new  AutoTripStatusUpdateCommand().execute(trips, ui, null);
             } catch (Exception e) {
                 //TODO: be more descriptive about the error (e.g. invalid date format,
                 // start date after end date, etc.)
