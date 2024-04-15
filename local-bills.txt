@@ -1,5 +1,4 @@
-Korea|dinner|Luo|100.0|null|Su Liu|70.0, 20.0, 10.0|false
-Korea|Test|Luo|1000.0|null|Sam|50.0, 50.0|false
-Beijing|lunch|Luo|40.0|null|Sam|50.0, 50.0|false
+Korea|dinner|Luo|100.0|null|Su Liu|70.0, 20.0, 10.0|true
+Korea|Test|Luo|1000.0|null|Sam|50.0, 50.0|true
+Beijing|lunch|Luo|40.0|null|Sam|50.0, 50.0|true
 India|snackies|Bob|40.0|null|Carol Denise|33.3, 33.3, 33.3|false
-Beijing|House|Luo|500.0|null|Su Wei|30.0, 30.0, 40.0|false

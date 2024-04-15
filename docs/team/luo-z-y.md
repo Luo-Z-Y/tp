@@ -9,12 +9,8 @@ Given below are my contributions to the project.
 
 ### Feature: 
 - Added the ability to set status for a trip.
-- Added the ability to store trips in a file.
-- Added the ability to store bills in a file.
-- Added the ability to simplify bills from a trip. (WIP)
-- Prohibited the user from entering invalid dates.
-- Updated NewParser to implement new features.
-- Fixed bugs in bills and trips.
+- Added the ability to store trips and bills data in a file.
+- Added the ability to simplify bills from a trip.
 
 ### Code contributed: [Repo link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=luo-z-y)
 
@@ -30,8 +26,11 @@ Given below are my contributions to the project.
 - **Enhancement 2**: Updated the `UserGuide.md` file to include a detailed user guide for the project.
 - **Enhancement 3**: Updated the `AboutUs.md` file to include a brief introduction of the team members.
 
+### Documentation:
+- **Documentation 1**: [User Guide](
+- **Documentation 2**: [Developer Guide](
+- **Documentation 3**: [About Us](
 
 ### Community:
 - **Community 1**: Reported bugs and suggestions for other teams in the project.
 - **Community 2**: Reviewed PRs for other teams in the project.
-- **Community 3**: Reported bugs and suggestions for other teams in the project.
