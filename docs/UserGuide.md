@@ -37,7 +37,7 @@ Voyagers is a Java application designed to manage trips efficiently through a co
     - [Change the Date of a Trip](#change-the-date-of-a-trip)
     - [Change the Location of a Trip](#Change-the-Location-of-a-Trip)
     - [Change the Description of a Trip](#Change-the-Description-of-a-Trip)
-    - [Cancel a Trip](#cancel-a-trip)
+    - [Cancel a Trip](#canceling-a-trip)
     - [Uncancel a Trip](#uncancel-a-trip)
     - [Deleting a Main Trip](#deleting-a-main-trip)
     - [Add Sub Trip](#adding-a-sub-trip)

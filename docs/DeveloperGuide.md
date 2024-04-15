@@ -145,8 +145,211 @@ our UG.
 
 ## Glossary
 
-* *glossary item* - Definition
+trip - class which represents an event, contains information regarding trip such as name, start, end, location, description, status, review
+main trip - trip which is not a sub trip contained in the TripList of another trip
+sub trip - trip which is contained in the TripList of another trip
+status - enum type of trip, (ONGOING, UPCOMING, CANCELLED, COMPLETED)
+review - class which represents user's feelings about a completed trip, contains a score of 1-10 and an open-ended reflection
+bill - class which represents a transaction, contains information such as trip name, bill name, payer, others (people paid for by payer), total amount, percentage splits to payer/others
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Launch and shutdown
+
+1. Initial launch
+    1. Download the jar file and copy into an empty folder
+    2. Open a CLT app and navigate to the folder containing the jar file
+    3. Execute the jar file by entering into the CLT: `java -jar .\tp.jar`
+       The jar file will run, the welcome message should be printed, along with the current list of trips.
+2. Test commands
+    1. Instructions for testing commands can be found in [command tests](#command-tests).
+3. Shutdown
+    1. Exit the program by inputting the below command:
+
+       ```bash
+       exit
+       ```
+
+## Command Tests
+
+### List trips
+
+1. List can be run with or without a specified status to print trips
+    1. Test case: `list`
+
+       Expected: A list of all trips is printed
+
+    2. Test case: `list x` (where x is a valid trip status)
+
+       Expected: A list of only trips of that status is printed.
+    3. Test case: `list y` (where y is not a valid trip status)
+       Expected: A warning message stating invalid list type is printed.
+
+### Add a main trip
+
+1. Command to add a main trip with a name, start date, end date, location, and description. All details are required and
+   the order of input flags is fixed. Case-sensitive.
+2. The command format
+   is `addmaintrip /n <trip name> /start <yyyy-MM-dd> /end <yyyy-MM-dd> /location <location> /d <description>`
+    1. Test case: `addmaintrip /n new unique name /start 2024-01-01 /end 2024-01-01 /location Home /d New Year`
+
+       Expected: Trip is added successfully.
+    2. Test case: `addmaintrip /n repeated name /start 2024-01-01 /end 2024-01-01 /location Home /d New Year`
+
+       Expected: Message printed warning trip name already exists.
+    3. Test case: `addmaintrip /n new unique name /start 2024-01-01 /end 2024-01-01 /d New Year` (missing flag)
+
+       Expected: Message printed warning missing arguments.
+    4. Test case: `addmaintrip /n new unique name /STARTH 2024-01-01 /end 2024-01-01 /location Home /d New Year`(
+       invalid/misspelled flag)
+
+       Expected: Message warning invalid argument
+    5. Test case: `addmaintrip /location Home /n unique name /STARTH 2024-01-01 /end 2024-01-01 /d New Year`(out of
+       order arguments)
+
+       Expected: Message warning the first out of order argument is invalid
+    6. Test case: start date after end date
+
+       Expected:
+
+### Delete a main trip
+
+1. Delete an existing main trip with reference to its unique name
+    1. Prerequisites: List the main trips using the `list` command or with `list <status>`to know the name of the trip
+       to be deleted.
+    2. Test case: `deletemaintrip /n <valid name>`
+
+       Expected: Main trip (and all its sub trips) is deleted.
+    3. Test case: `deletemaintrip /n <invalid name>`
+
+       Expected: Message saying no such trip found
+    4. Test case: `deletemaintrip <valid name>` (missing flag `/n`)
+
+       Expected: Message saying missing arguments.
+
+### Adding a subtrip
+
+1. Add a sub trip onto an existing main trip with reference to the main trip's unique name. All details are required and
+   the order of input flags is fixed. Case-sensitive.
+2. The format is
+   addsubtrip `addsubtrip /n <valid main trip name> /start <yyyy-MM-dd> /end <yyyy-MM-dd> /location <location /d <description>`
+    2. Prerequisites: List the main trips using the `list` command or with `list <status>` to know the name of the main
+       trip to add a sub trip to
+    2. Test
+       case: `addsubtrip /n <valid main trip name> /start <yyyy-MM-dd> /end <yyyy-MM-dd> /location <location /d <description>`
+
+       Expected: Sub trip is added successfully. Sub trip is printed listed when the main trip is printed
+    3. Test
+       case: `addsubtrip /n <invalid main trip name> /start <yyyy-MM-dd> /end <yyyy-MM-dd> /location <location /d <description>`
+
+       Expected: Message saying no such main trip found.
+    4. Test case: sub trip start is earlier than main trip start OR sub trip end is later than main trip end
+
+       Expected: Message warning sub trip is not within the main trip's date range.
+    5. Test case: sub trip start is after the main trip's end
+
+       Expected: Message warning the sub trip's start is after the main trip's end.
+
+### Modifying a trip
+
+1. Change a detail of an existing main trip. Command required corresponds to detail to be changed.
+   1. Prerequisites: use `list` to find the names of existing main trips and sub trips.
+   2. Name - `setname <current trip name> /n <new name>`
+      1. Test case: `setname <valid exiting trip name> /n <new unused name>`
+         
+         Expected: Trip name is changed successfully, its sub trips' names are also changed
+      2. Test case: `setname <valid exiting trip name> /n <already used name>`
+
+         Expected: Message warning a trip with that name already exists.
+      3. Test case: `setname MainTripName-1 /n <already used name>` (`-1` suffix to trip name signifies a sub trip name)
+
+         Expected: Message warning you cannot change sub trip name.
+   3. Dates - `setdates <current trip name> /start <yyyy-MM-dd> /end <yyyy-MM-dd>`
+      1. Test case: new start earlier than new end
+      
+         Expected: Trip's dates changed successfully.
+      2. Test case: new start later than new end
+
+         Expected: Message warning start date cannot be after end date.
+   4. Location - `setlocation <current trip name> /location <new location>`
+      1. Location is open-ended, if command is used with a valid trip name and flag `/location`, setlocation will succeed
+   5. Description - `setdescription <current trip name>< /d <new description>`
+      1. Description is open-ended, if command is used with a valid trip name and flag `/d`, setdescription will succeed
+
+### Cancelling / Uncancelling a main trip
+1. Cancelling/uncancel a main trip without removing its record
+2. Command format `setstatus <main trip name> /status <cancel or uncancel>`
+   1. Test case: `setstatus <main trip name> /status cancel` (cancelling an upcoming trip)
+
+      Expected: Trip status is changed from UPCOMING to CANCELLED
+
+   2. Test case: `setstatus <main trip name> /status uncancel` (uncancelling a cancelled trip)
+
+      Expected: Trip status is changed from CANCELLED to UPCOMING
+
+   3. Test case: `setstatus <completed main trip name> /status cancel` (uncancelling a cancelled trip)
+
+      Expected: Message warning trip is already completed
+### Reviewing a main trip
+
+1. Review a completed main trip by giving it a 1-10 score and an open-ended reflection.
+   1. Prerequisites: use `list completed` to find the names of completed main trips.
+   2. Command format `review <main trip name> /s <1-10> /r <reflection>`
+      1. Test case: `review <valid completed main trip name> /s 10 /r it was great`
+
+         Expected: Review will be added successfully.
+      2. Test case: `review <invalid trip name> /s 5 /r it was so and so`
+
+         Expected: Message warning no such trip found
+      3. Test case `review <valid non-completed main trip name> /s 1 /r I haven't even done this yet`
+
+         Expected: Message warning trip must be completed before it can be reviewed
+      4. Test case: `review <subtrip name> /s 1 /r lorem ipsum` (eg. sub trip name of 'China' could be China-1)
+
+         Expected: Message warning no such trip found
+
+### Reading reviews
+
+1. Read review to see what review you previously gave a completed main trip
+   1. Prerequisites: review a completed main trip
+   2. Command format `readreview <main trip name>`
+      1. Test case: `readreview <reviewed main trip>`
+
+         Expected: Review printed to screen
+      2. Test case: `readreview <unreviewed main trip`
+
+         Expected: Message warning no review exists for this trip
+      
+### Adding a bill
+
+1. Add a bill with details of trip, name, payer, others, amount, percentages
+2. Command format `addbill /trip <main trip name> /n <bill name> /payer <Payer> /others <OtherName1 ...> /amount <amount> /percentages <percetagePayer percentageOtherName1 ...`
+   1. Test case: Number of (buyer + others) = number of percentages AND percentages sum to 100
+
+      Expected: Bill successfully created
+   2. Test case: Percentages do not sum to 100
+
+      Expected: Message warning percentages do not sum to 100
+   3. Test case: Any name is repeated among Payer and Others
+
+      Expected: Message warning repeated names in payer and others
+   4. Test case: Invalid trip name
+
+      Expected: No such trip found
+
+### Paying a bill
+
+1. Mark a bill as paid
+2. Command format `paybill /trip <main trip name> /n <billname>`
+   1. Test case: valid main trip name with valid bill name
+
+      Expected: Bill is marked as paid
+   2. Test case: invalid trip name - bill name pair
+    
+      Expected: Message warning no such bill found
+### List bills
+1. List all bills
+2. Command format `listbills`
+   1. Test case: `listbills`
+
+      Expected: all bills are printed
