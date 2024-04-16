@@ -9,15 +9,27 @@ import seedu.voyagers.utils.TripStorage;
 import seedu.voyagers.utils.Ui;
 
 import java.util.ArrayList;
+
+import static seedu.voyagers.utils.BillStorage.readBillFile;
 //import java.util.HashMap;
 //import java.util.Objects;
 
 //import static javax.swing.UIManager.put;
 
 public class SimplifyBillCommand extends Command {
+    public SimplifyBillCommand(String[] args) {
+        super(args);
+    }
+
     public void execute(TripList trips, Ui ui, TripStorage tripStorage) {
         BillList billList = new BillList();
         ArrayList<Bill> bills = billList.getBills();
+        ArrayList<Bill> tripBills = new ArrayList<>();
+        for (Bill bill : bills) {
+            if (bill.getTripName().equals(args[0])) {
+                tripBills.add(bill);
+            }
+        }
         if (bills.isEmpty()) {
             ui.echo("You have no bills in your list.");
             return;
@@ -31,7 +43,7 @@ public class SimplifyBillCommand extends Command {
                     }
                 }});
             }*/
-            BillSettler.createGraphForDebts(bills);
+            BillSettler.createGraphForDebts(tripBills);
         }
     }
 }

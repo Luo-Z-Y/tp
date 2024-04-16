@@ -2,3 +2,11 @@ Korea|dinner|Luo|100.0|null|Su Liu|70.0, 20.0, 10.0|true
 Korea|Test|Luo|1000.0|null|Sam|50.0, 50.0|true
 Beijing|lunch|Luo|40.0|null|Sam|50.0, 50.0|true
 India|snackies|Bob|40.0|null|Carol Denise|33.3, 33.3, 33.3|false
+Beijing|breakfast|Bob|45.0|null|Charles Denise|50.0, 45.0, 5.0|false
+Beijing|dinner|Bob|45.0|null|Charles Denise|50.0, 45.0, 5.0|false
+Beijing|shopping|Bob|45.0|null|Charles Denise|50.0, 45.0, 5.0|false
+Beijing|go|Alice|50.0|null|Bob Carol|33.3, 33.3, 33.3|false
+Beijing|haha|Alice|50.0|null|Bob Carol|33.3, 33.3, 33.3|false
+India|dinner|Alice|50.0|null|Bob Carol|33.3, 33.3, 33.3|false
+India|haha|Alice|50.0|null|Bob Carol|33.3, 33.3, 33.3|false
+India|gogo|Alice|50.0|null|Bob Carol|33.3, 33.3, 33.3|false

@@ -122,10 +122,8 @@ public class BillList {
     }
 
     public boolean isBillNameRepeated(Bill newBill){
-        Trip trip =  newBill.getTrip();
-        for(int i = 0; i < bills.size(); i++){
-            Bill existingBill = bills.get(i);
-            if (matchingTripNameAndBillName(existingBill, newBill)){
+        for (Bill existingBill : bills) {
+            if (matchingTripNameAndBillName(existingBill, newBill)) {
                 return true;
             }
         }

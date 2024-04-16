@@ -70,7 +70,7 @@ public class NewParser {
         case "listbills":
             return new ListBillCommand();
         case "simplifybill":
-            return new SimplifyBillCommand();
+            return new SimplifyBillCommand(parseArgs(line, ParserDefinitions.SIMPLIFYBILL));
         case "paybill":
             return new PayBillCommand(parseArgs(line, ParserDefinitions.PAYBILL));
         case "setbillcurrency":
