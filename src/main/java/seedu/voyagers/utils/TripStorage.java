@@ -45,6 +45,7 @@ public class TripStorage {
                 Date endDate = format.parse(inputs[3]);
                 Trip trip = new Trip(inputs[1], startDate, endDate, inputs[4], inputs[5]);
                 trip.setTripType(inputs[0]);
+                trip.setStatus(Status.valueOf(inputs[6]));
                 if (inputs[0].equalsIgnoreCase("main")) {
                     trips.add(trip);
                 } else {

@@ -219,7 +219,24 @@ public class Trip {
     }
 
     public void setStatus(Status status) {
+
         this.status = status;
+        if (status == Status.CANCELLED) {
+            for (Trip subTrip : subTrips) {
+                subTrip.setStatus(Status.CANCELLED);
+            }
+        }
+        else {
+            for (Trip subTrip : subTrips) {
+                if(subTrip.endDate.before(new Date())) {
+                    subTrip.status = Status.COMPLETED;
+                } else if(subTrip.startDate.after(new Date())) {
+                    subTrip.status = Status.UPCOMING;
+                } else {
+                    subTrip.status = Status.COMPLETED;
+                }
+            }
+        }
     }
 
     /**

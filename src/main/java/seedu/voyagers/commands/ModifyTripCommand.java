@@ -74,7 +74,7 @@ public class ModifyTripCommand extends Command {
             trip.setDescription(args[2]);
             break;
         case "status":
-            if (args[2].equalsIgnoreCase("cancel")) {
+            if (args[2].equalsIgnoreCase("cancel")){
                 trip.setStatus(Status.CANCELLED);
             } else if (args[2].equalsIgnoreCase("uncancel")) {
                 trip.setStatus(null);

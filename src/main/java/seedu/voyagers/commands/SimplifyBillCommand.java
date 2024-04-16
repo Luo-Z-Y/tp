@@ -22,11 +22,6 @@ public class SimplifyBillCommand extends Command {
             ui.echo("You have no bills in your list.");
             return;
         } else {
-            for (int i = 0; i < trips.size(); i++) {
-                billList = trips.get(i).getBills();
-                bills.add(billList.get(i));
-
-            }
             /*for (int j = 0; j < Objects.requireNonNull(billList).size(); j++) {
                 Bill billtemp = billList.get(j);
                 Bill bill = new Bill(billtemp.getName(), billtemp.getPayer(), billtemp.getAmount(),

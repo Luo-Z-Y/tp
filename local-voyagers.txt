@@ -1,4 +1,4 @@
-main|Beijing|2024-05-01|2024-05-24|CD|go home|UPCOMING
-sub|Beijing|2024-05-01|2024-05-01|temp|lorem ipsum|UPCOMING
+main|Beijing|2024-05-01|2024-05-24|CD|go home|CANCELLED
+sub|Beijing|2024-05-01|2024-05-01|temp|lorem ipsum|CANCELLED
 main|Korea|2024-05-01|2024-07-31|Suwon|dating|UPCOMING
 main|India|2024-01-01|2024-05-24|CD|go home|ONGOING
